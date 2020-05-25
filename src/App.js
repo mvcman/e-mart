@@ -7,6 +7,7 @@ import ProductList from './components/ProuctList';
 import Details from './components/Details';
 import Cart from './components/Cart';
 import Default from './components/Default';
+import News from './components/News';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
               <Route exact path="/" component={ProductList} />
               <Route exact path="/details" component={Details} />
               <Route exact path="/store" component={Cart} />
+              <Route exact path="/news" component={News} />
               <Route component={Default} />
           </Switch>
       </React.Fragment>

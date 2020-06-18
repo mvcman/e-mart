@@ -12,6 +12,9 @@ export class ProductProvider extends Component {
         cart: [],
         modalOpen: false,
         modalProduct: detailProducts,
+        cartSubTotal: 0,
+        cartTax: 0,
+        cartTotal: 0,
     }
 
     setProducts = () => {
@@ -59,6 +62,7 @@ export class ProductProvider extends Component {
             };
         }, () => {
             console.log(this.state);
+            this.addTotal();
         });
     }
 
@@ -78,10 +82,41 @@ export class ProductProvider extends Component {
         });
     }
 
+    increment = (id) => {
+        console.log('increament');
+    }
+
+    decrement = (id) => {
+        console.log('decrement');
+    }
+    removeItem = (id) => {
+        console.log('Item removed');
+    }
+    clearCart = (id) => {
+        console.log('Cart cleared');
+        this.setState({
+            cart: []
+        }, () => {
+            this.setProducts();
+        });
+    }
     componentDidMount() {
         this.setProducts();
     }
-
+    addTotal = () => {
+        let subTotal = 0;
+        this.state.cart.map((item) => subTotal += item.total);
+        const tempTax = subTotal * 0.1;
+        const tax = parseFloat(tempTax.toFixed(2));
+        const total = subTotal + tax;
+        this.setState(() => {
+            return {
+                cartSubTotal: subTotal,
+                cartTax: tax,
+                cartTotal: total
+            }
+        })
+    }
     //tester = () => {
     //    console.log('State Product:', this.state.products[0].inCart);
     //    console.log('Data Product: ', storeProducts[0].inCart);
@@ -104,7 +139,11 @@ export class ProductProvider extends Component {
                 handleDetail: this.handleDetail,
                 addToCart: this.addToCart,
                 openModal: this.openModal,
-                closeModal: this.closeModal
+                closeModal: this.closeModal,
+                increment: this.increment,
+                decrement: this.decrement,
+                removeItem: this.removeItem,
+                clearCart: this.clearCart
             }}>
                 {/*<button onClick={this.tester}>TEst me</button>*/}
                 {this.props.children}

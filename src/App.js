@@ -5,11 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ProductList from './components/ProuctList';
 import Details from './components/Details';
-import Cart from './components/Cart';
 import Default from './components/Default';
 import News from './components/News';
 import Modal from './components/Modal';
-
+import Cart from './components/Cart/Cart';
 function App() {
     return (
       <React.Fragment>

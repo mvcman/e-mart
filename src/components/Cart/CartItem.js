@@ -1,9 +1,9 @@
 import React from 'react'
 
 function CartItem({ item, value }) {
-    const { id, img, title, price, total } = item;
+    const { id, img, title, price, total, count } = item;
     const { increment, decrement, removeItem } = value;
-    const count = 0;
+    //const count = 0;
     return (
         <div className="row my-3 text-capitalize text-center">
             <div className="col-10 mx-auto col-lg-2">
@@ -27,7 +27,7 @@ function CartItem({ item, value }) {
                 </div>
             </div>
             <div className="col-10 mx-auto col-lg-2">
-                <div className="cart-icon" onClick={() => removeItem()}>
+                <div className="cart-icon" onClick={() => removeItem(id)}>
                     <i className="fas fa-trash"></i>
                 </div>
             </div>
